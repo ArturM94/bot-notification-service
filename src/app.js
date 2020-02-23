@@ -10,6 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.sendStatus(200));
 
-app.listen(PORT || 5000, () => {
+app.listen(PORT, () => {
   console.log(`Notification service is running on ${PORT}`);
 });
