@@ -1,8 +1,9 @@
 const { validationResult } = require('express-validator');
 
+const { calculateDelay } = require('../helpers/calculateDelay');
 const { queue } = require('../queue');
 
-module.exports.put = async (req, res) => {
+module.exports.postJob = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -11,17 +12,11 @@ module.exports.put = async (req, res) => {
       res.status(422).json({ errors: errors.array() });
     }
 
-    const { id } = req.params;
     const { body } = req;
-    const job = await queue.getJob(id);
+    const delay = await calculateDelay(body.date);
+    await queue.add(body, { delay });
 
-    if (job === null) {
-      res.status(404).json({ error: 'Job not found' });
-    }
-
-    await job.update(body);
-
-    res.status(200).json({ message: 'Job has been updated successfully' });
+    res.status(200).json({ message: 'Job has been added successfully' });
   } catch (error) {
     console.error(error);
     res.sendStatus(500);
