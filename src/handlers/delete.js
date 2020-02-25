@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-module.exports.delete = (req, res) => {
+module.exports.delete = async (req, res) => {
   try {
     const errors = validationResult(req);
 

@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-module.exports.put = (req, res) => {
+module.exports.put = async (req, res) => {
   try {
     const errors = validationResult(req);
 
