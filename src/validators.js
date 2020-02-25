@@ -1,4 +1,10 @@
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
+
+const idValidator = [
+  param('id', 'ID is wrong')
+    .not().isEmpty()
+    .isString(),
+];
 
 const bodyValidator = [
   body('telegramId', 'Telegram ID is wrong')
@@ -17,4 +23,4 @@ const bodyValidator = [
     .isISO8601(),
 ];
 
-module.exports = { bodyValidator };
+module.exports = { idValidator, bodyValidator };
