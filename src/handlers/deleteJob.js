@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 
 const queue = require('../queue');
 
-module.exports.deleteJob = async (req, res) => {
+const deleteJob = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -26,3 +26,5 @@ module.exports.deleteJob = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+module.exports = deleteJob;

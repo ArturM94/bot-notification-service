@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator');
 const { calculateDelay } = require('../helpers/calculateDelay');
 const { queue } = require('../queue');
 
-module.exports.postJob = async (req, res) => {
+const postJob = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -22,3 +22,5 @@ module.exports.postJob = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+module.exports = postJob;
