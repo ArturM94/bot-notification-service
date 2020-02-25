@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.sendStatus(200));
 
-app.post('/notifications', bodyValidator, postHandler);
-app.put('/notifications/:id', idValidator, bodyValidator, putHandler);
-app.delete('/notifications/:id', idValidator, deleteHandler);
+app.post('/jobs', bodyValidator, postHandler);
+app.put('/jobs/:id', idValidator, bodyValidator, putHandler);
+app.delete('/jobs/:id', idValidator, deleteHandler);
 
 app.listen(PORT, () => {
   console.log(`Notification service is running on ${PORT}`);
