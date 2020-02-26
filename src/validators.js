@@ -12,19 +12,23 @@ const idValidator = [
 ];
 
 const bodyValidator = [
+  body('telegramId', 'telegramId should not be empty')
+    .not().isEmpty(),
   body('telegramId', 'telegramId should be a string')
-    .not().isEmpty()
     .isString(),
+  body('text', 'text should not be empty')
+    .not().isEmpty(),
   body('text', 'text should be a string')
-    .not().isEmpty()
     .isString()
     .trim(),
+  body('attachments', 'attachments should not be empty')
+    .not().isEmpty(),
   body('attachments', 'attachments should be a string')
-    .not().isEmpty()
     .isString()
     .trim(),
+  body('date', 'date should not be empty')
+    .not().isEmpty(),
   body('date', 'date should comply with the ISO 8601 standard')
-    .not().isEmpty()
     .isISO8601(),
 ];
 
