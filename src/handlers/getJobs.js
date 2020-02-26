@@ -12,7 +12,6 @@ const getJobs = async (req, res) => {
     }
 
     const { jobType } = req.query;
-    console.log('getJobs', jobType);
     const jobs = await queue.getJobs([jobType]);
 
     return res.status(200).json(jobs);
