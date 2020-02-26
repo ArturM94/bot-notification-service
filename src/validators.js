@@ -5,8 +5,9 @@ const { JOB_TYPES } = require('./constants');
 const jobTypes = Object.values(JOB_TYPES);
 
 const idValidator = [
+  param('id', 'ID is wrong. Should not be empty')
+    .not().isEmpty(),
   param('id', 'ID is wrong. Should be a string')
-    .not().isEmpty()
     .isString(),
 ];
 
