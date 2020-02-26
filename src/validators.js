@@ -33,9 +33,11 @@ const notificationValidator = [
 ];
 
 const jobTypeValidator = [
-  query('jobType', 'jobType should not be empty')
+  query('jobTypes', 'jobTypes should not be empty')
     .not().isEmpty(),
-  query('jobType', `jobType should be one of ${jobTypes.join(', ')}`)
+  query('jobTypes', 'jobTypes should be an array')
+    .isArray({ min: 1, max: jobTypes.length }),
+  query('jobTypes', `jobTypes should contain only these values: ${jobTypes.join(', ')}`)
     .isIn(jobTypes),
 ];
 

@@ -11,8 +11,8 @@ const getJobs = async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    const { jobType } = req.query;
-    const jobs = await queue.getJobs([jobType]);
+    const { jobTypes } = req.query;
+    const jobs = await queue.getJobs([jobTypes]);
 
     return res.status(200).json(jobs);
   } catch (error) {
