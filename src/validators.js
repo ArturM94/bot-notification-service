@@ -11,7 +11,7 @@ const idValidator = [
     .isString(),
 ];
 
-const bodyValidator = [
+const notificationValidator = [
   body('telegramId', 'telegramId should not be empty')
     .not().isEmpty(),
   body('telegramId', 'telegramId should be a string')
@@ -39,4 +39,4 @@ const jobTypeValidator = [
     .isIn(jobTypes),
 ];
 
-module.exports = { idValidator, bodyValidator, jobTypeValidator };
+module.exports = { idValidator, notificationValidator, jobTypeValidator };
