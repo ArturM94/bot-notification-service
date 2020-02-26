@@ -8,7 +8,7 @@ const postJob = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      console.log(errors);
+      console.error(errors);
       return res.status(422).json({ errors: errors.array() });
     }
 
