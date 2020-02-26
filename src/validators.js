@@ -28,6 +28,8 @@ const bodyValidator = [
 ];
 
 const jobTypeValidator = [
+  query('jobType', 'Job type is wrong. Should not be empty')
+    .not().isEmpty(),
   query('jobType', `Job type is wrong. Should be one of ${jobTypes.join(', ')}`)
     .isIn(jobTypes),
 ];
