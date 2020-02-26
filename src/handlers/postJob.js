@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const { calculateDelay } = require('../helpers/calculateDelay');
-const { queue } = require('../queue');
+const queue = require('../queue');
 
 const postJob = async (req, res) => {
   try {
