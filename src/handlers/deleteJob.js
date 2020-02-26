@@ -8,22 +8,22 @@ const deleteJob = async (req, res) => {
 
     if (!errors.isEmpty()) {
       console.log(errors);
-      res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() });
     }
 
     const { id } = req.params;
     const job = await queue.getJob(id);
 
     if (job === null) {
-      res.status(404).json({ error: 'Job not found' });
+      return res.status(404).json({ error: 'Job not found' });
     }
 
     await job.remove();
 
-    res.status(200).json({ message: 'Job has been removed successfully' });
+    return res.status(200).json({ message: 'Job has been removed successfully' });
   } catch (error) {
     console.error(error);
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 };
 

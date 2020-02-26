@@ -9,17 +9,17 @@ const postJob = async (req, res) => {
 
     if (!errors.isEmpty()) {
       console.log(errors);
-      res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() });
     }
 
     const { body } = req;
     const delay = await calculateDelay(body.date);
     await queue.add(body, { delay });
 
-    res.status(200).json({ message: 'Job has been added successfully' });
+    return res.status(200).json({ message: 'Job has been added successfully' });
   } catch (error) {
     console.error(error);
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 };
 
