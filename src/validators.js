@@ -1,4 +1,8 @@
-const { body, param } = require('express-validator');
+const { body, param, query } = require('express-validator');
+
+const { JOB_TYPES } = require('./constants');
+
+const jobTypes = Object.values(JOB_TYPES);
 
 const idValidator = [
   param('id', 'ID is wrong')
@@ -23,4 +27,9 @@ const bodyValidator = [
     .isISO8601(),
 ];
 
-module.exports = { idValidator, bodyValidator };
+const jobTypeValidator = [
+  query('jobType', `Job type is wrong. Should be one of ${jobTypes.join(', ')}`)
+    .isIn(jobTypes),
+];
+
+module.exports = { idValidator, bodyValidator, jobTypeValidator };
