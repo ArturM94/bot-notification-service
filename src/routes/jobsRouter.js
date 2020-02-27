@@ -1,7 +1,7 @@
 const express = require('express');
 
 const jobController = require('../controllers');
-const { notificationValidator, idValidator, jobTypeValidator } = require('../validators');
+const { notificationValidator, idValidator, jobTypeValidator } = require('../helpers/validators');
 
 const jobsRouter = express.Router();
 
