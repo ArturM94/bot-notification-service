@@ -14,7 +14,7 @@ const deleteJob = async (req, res) => {
     const { id } = req.params;
     const job = await queue.getJob(id);
 
-    if (job === null) {
+    if (!job) {
       return res.status(404).json({ error: 'Job not found' });
     }
 

@@ -15,7 +15,7 @@ const putJob = async (req, res) => {
     const { body } = req;
     const job = await queue.getJob(id);
 
-    if (job === null) {
+    if (!job) {
       return res.status(404).json({ error: 'Job not found' });
     }
 
