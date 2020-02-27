@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const queue = require('../queue');
+const { calculateDelay } = require('../helpers/calculateDelay');
 
 const updateJob = async (req, res) => {
   try {
@@ -19,7 +20,21 @@ const updateJob = async (req, res) => {
       return res.status(404).json({ error: 'Job not found' });
     }
 
-    await job.update(body);
+    const data = {
+      text: body.text || job.data.text,
+      attachments: body.attachments || job.data.attachments,
+      date: body.date || job.data.date,
+    };
+
+    if (body.date !== job.data.date) {
+      await job.remove();
+      const delay = await calculateDelay(body.date);
+      await queue.add(data, { delay });
+
+      return res.status(200).json({ message: 'Job has been updated successfully' });
+    }
+
+    await job.update(data);
 
     return res.status(200).json({ message: 'Job has been updated successfully' });
   } catch (error) {
