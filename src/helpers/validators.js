@@ -1,6 +1,6 @@
 const { body, param, query } = require('express-validator');
 
-const { JOB_TYPES } = require('../constants');
+const { JOB_TYPES } = require('./constants');
 
 const jobTypes = Object.values(JOB_TYPES);
 
