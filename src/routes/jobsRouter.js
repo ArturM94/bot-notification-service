@@ -7,7 +7,7 @@ const jobsRouter = express.Router();
 
 jobsRouter.get('/', jobTypeValidator, jobController.getJobs);
 jobsRouter.post('/', notificationValidator, jobController.addJob);
-jobsRouter.put('/:id', idValidator, notificationValidator, jobController.putJob);
+jobsRouter.put('/:id', idValidator, notificationValidator, jobController.updateJob);
 jobsRouter.delete('/:id', idValidator, jobController.deleteJob);
 
 module.exports = jobsRouter;

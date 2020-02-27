@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 
 const queue = require('../queue');
 
-const putJob = async (req, res) => {
+const updateJob = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -28,4 +28,4 @@ const putJob = async (req, res) => {
   }
 };
 
-module.exports = putJob;
+module.exports = updateJob;
