@@ -6,7 +6,7 @@ const { notificationValidator, idValidator, jobTypeValidator } = require('../hel
 const jobsRouter = express.Router();
 
 jobsRouter.get('/', jobTypeValidator, jobController.getJobs);
-jobsRouter.post('/', notificationValidator, jobController.postJob);
+jobsRouter.post('/', notificationValidator, jobController.addJob);
 jobsRouter.put('/:id', idValidator, notificationValidator, jobController.putJob);
 jobsRouter.delete('/:id', idValidator, jobController.deleteJob);
 

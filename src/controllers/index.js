@@ -1,11 +1,11 @@
 const getJobs = require('./getJobs');
-const postJob = require('./postJob');
+const addJob = require('./addJob');
 const putJob = require('./putJob');
 const deleteJob = require('./deleteJob');
 
 module.exports = {
   getJobs,
-  postJob,
+  addJob,
   putJob,
   deleteJob,
 };
