@@ -1,1 +1,1 @@
-module.exports.calculateDelay = async (timestamp) => timestamp - Date.now();
+module.exports.calculateDelay = (timestamp) => timestamp - Date.now();
