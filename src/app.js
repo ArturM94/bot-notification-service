@@ -1,10 +1,10 @@
 const express = require('express');
 
 const config = require('./config');
-const postJob = require('./handlers/postJob');
-const putJob = require('./handlers/putJob');
-const deleteJob = require('./handlers/deleteJob');
-const getJobs = require('./handlers/getJobs');
+const postJob = require('./controllers/postJob');
+const putJob = require('./controllers/putJob');
+const deleteJob = require('./controllers/deleteJob');
+const getJobs = require('./controllers/getJobs');
 const { notificationValidator, idValidator, jobTypeValidator } = require('./validators');
 
 const app = express();
