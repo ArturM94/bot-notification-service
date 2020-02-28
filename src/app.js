@@ -2,7 +2,6 @@ const express = require('express');
 
 const config = require('./config');
 const jobsRouter = require('./routes/jobsRouter');
-const { authMiddleware } = require('./middlewares/index');
 const checkConfig = require('./helpers/checkConfig');
 
 const app = express();
@@ -13,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.sendStatus(200));
 
-app.use('/jobs', authMiddleware, jobsRouter);
+app.use('/jobs', jobsRouter);
 
 app.listen(PORT, () => {
   checkConfig(config);
