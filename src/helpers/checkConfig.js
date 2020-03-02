@@ -1,4 +1,4 @@
-const { REQUIRED_ENV } = require('./constants');
+const { REQUIRED_ENV } = require('../constants');
 
 const checkConfig = (config) => {
   REQUIRED_ENV.forEach((item) => {

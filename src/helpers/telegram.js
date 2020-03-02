@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const { TELEGRAM_API } = require('../helpers/constants');
+const { TELEGRAM_API } = require('../constants');
 
 /**
  * Sends message to user by chat id via Telegram API.
