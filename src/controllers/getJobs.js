@@ -14,7 +14,7 @@ const getJobs = async (req, res) => {
     const { jobTypes } = req.query;
     const jobs = await queue.getJobs([jobTypes]);
 
-    if (jobs.length === 0) {
+    if (!jobs.length) {
       return res.status(404).json({ error: 'Jobs not found' });
     }
 
