@@ -23,4 +23,25 @@ const getAllSubscribers = async () => {
   }
 };
 
-module.exports = { getAllSubscribers };
+const updateNotificationStatus = async (id, status) => {
+  const client = await getMongoClient();
+
+  try {
+    const notificationsCollection = await client.db().collection('notifications');
+
+    const update = {
+      $set: {
+        sent: status,
+      },
+    };
+    const result = await notificationsCollection.update({ _id: id }, update);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.close();
+  }
+};
+
+module.exports = { getAllSubscribers, updateNotificationStatus };
