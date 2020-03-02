@@ -7,9 +7,9 @@ const verifyApiKey = (req, res, next) => {
   if (userApiKey === NOTIFICATIONS_API_KEY) {
     next();
   } else {
-    console.error('User\'s API Key is incorrerct or not specified!');
+    console.error('User\'s API Key is incorrect or not specified!');
     res.status(401).json({
-      error: 'Incorrerct Auth token!',
+      error: 'Incorrect Auth token!',
     });
   }
 };
