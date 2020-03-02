@@ -1,3 +1,9 @@
+const config = require('../config');
+
+const { TELEGRAM_TOKEN } = config;
+
+const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_TOKEN}`;
+
 const JOB_TYPES = {
   WAITING: 'waiting',
   ACTIVE: 'active',
@@ -7,4 +13,4 @@ const JOB_TYPES = {
   PAUSED: 'paused',
 };
 
-module.exports = { JOB_TYPES };
+module.exports = { TELEGRAM_API, JOB_TYPES };
