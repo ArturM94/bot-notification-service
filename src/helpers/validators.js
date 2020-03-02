@@ -12,9 +12,9 @@ const idValidator = [
 ];
 
 const notificationValidator = [
-  body('telegramId', 'telegramId should not be empty')
+  body('id', 'id should not be empty')
     .not().isEmpty(),
-  body('telegramId', 'telegramId should be a string')
+  body('id', 'id should be a string')
     .isString(),
   body('text', 'text should not be empty')
     .not().isEmpty(),
