@@ -21,8 +21,6 @@ const notificationValidator = [
   body('text', 'text should be a string')
     .isString()
     .trim(),
-  body('attachments', 'attachments should not be empty')
-    .not().isEmpty(),
   body('attachments', 'attachments should be a string')
     .isString()
     .trim(),
