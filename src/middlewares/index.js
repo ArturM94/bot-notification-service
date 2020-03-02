@@ -1,7 +1,8 @@
 const authorization = require('./auth');
-const errorMiddleware = require('./errorMiddleware');
+const { NotFoundError, ServerError } = require('./errorMiddleware');
 
 module.exports = {
   authMiddleware: authorization,
-  errorMiddleware,
+  NotFoundError,
+  ServerError,
 };
