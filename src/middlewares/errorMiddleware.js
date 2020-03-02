@@ -4,9 +4,10 @@ exports.NotFoundError = (req, res, next) => {
   next(error);
 };
 
-exports.ServerError = (error, req, res) => {
+exports.ServerError = (error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: error.message || 'Internal Server Error',
   });
+  next();
 };
