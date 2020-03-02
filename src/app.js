@@ -2,8 +2,7 @@ const express = require('express');
 
 const config = require('./config');
 const jobsRouter = require('./routes/jobsRouter');
-const { authMiddleware } = require('./middlewares/index');
-const { errorMiddleware: { NotFoundError, ServerError } } = require('./middlewares');
+const { authMiddleware, NotFoundError, ServerError } = require('./middlewares');
 
 const app = express();
 const { PORT } = config;

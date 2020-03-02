@@ -39,8 +39,10 @@
     "nodemon": "2.0.2"
   },
   "dependencies": {
+    "axios": "0.19.2",
     "bull": "3.13.0",
     "express": "4.17.1",
-    "express-validator": "6.4.0"
+    "express-validator": "6.4.0",
+    "mongodb": "3.5.4"
   }
 }
