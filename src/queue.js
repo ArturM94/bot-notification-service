@@ -11,10 +11,7 @@ const queue = new Queue('notifications', REDIS_URL);
 queue.on('active', (job) => console.info(`Job with id ${job.id} in queue "${queue.name}" has just started`));
 queue.on('completed', (job, result) => console.info(`Job with id ${job.id} in queue "${queue.name}" has been completed with result ${result}`));
 queue.on('paused', (job) => console.info(`Job with id ${job.id} in queue "${queue.name}" has paused`));
-// TODO: check Error: Cannot read property 'id' of undefined
-// queue.on('drained', (job) => {
-//   console.info(`Job with id ${job.id} in queue "${queue.name}" has drained`);
-// });
+queue.on('drained', () => console.info(`Queue "${queue.name}" has drained`));
 
 queue.on('error', (error) => console.error(`Queue "${queue.name}" has failed. Error: ${error.message}`));
 queue.on('stalled', (job) => console.error(`Job with id ${job.id} in queue "${queue.name}" has been stalled`));
