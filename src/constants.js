@@ -16,6 +16,8 @@ const JOB_TYPES = {
 const REQUIRED_ENV = [
   'REDIS_URL',
   'NOTIFICATIONS_API_KEY',
+  'DB_URL',
+  'TELEGRAM_TOKEN',
 ];
 
 module.exports = {
