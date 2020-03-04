@@ -8,14 +8,19 @@ const idValidator = [
   param('id', 'id should not be empty')
     .not().isEmpty(),
   param('id', 'id should be a string')
+    .customSanitizer((id) => id.toString())
+    .isString(),
+];
+
+const notificationIdValidator = [
+  body('id', 'id should not be empty')
+    .not().isEmpty(),
+  body('id', 'id should be a string')
+    .customSanitizer((id) => id.toString())
     .isString(),
 ];
 
 const notificationValidator = [
-  body('id', 'id should not be empty')
-    .not().isEmpty(),
-  body('id', 'id should be a string')
-    .isString(),
   body('text', 'text should not be empty')
     .not().isEmpty(),
   body('text', 'text should be a string')
@@ -39,4 +44,9 @@ const jobTypeValidator = [
     .isIn(jobTypes),
 ];
 
-module.exports = { idValidator, notificationValidator, jobTypeValidator };
+module.exports = {
+  idValidator,
+  notificationValidator,
+  notificationIdValidator,
+  jobTypeValidator,
+};
