@@ -9,6 +9,7 @@ const idValidator = [
   param('id', 'id should not be empty')
     .not().isEmpty(),
   param('id', 'id should be a string')
+    .customSanitizer((id) => id.toString())
     .isString(),
 ];
 
