@@ -20,8 +20,22 @@ const REQUIRED_ENV = [
   'TELEGRAM_TOKEN',
 ];
 
+const BULL_QUEUES = {
+  TOP_SPEAKERS: 'top-speakers',
+  FOOD_EVENTS: 'food-events',
+  FOR_MOOD: 'for-mood',
+};
+
+const BULL_METHODS = {
+  ADD: 'add',
+  GET_JOB: 'getJob',
+  GET_JOBS: 'getJobs',
+};
+
 module.exports = {
   TELEGRAM_API,
   JOB_TYPES,
   REQUIRED_ENV,
+  BULL_QUEUES,
+  BULL_METHODS,
 };
