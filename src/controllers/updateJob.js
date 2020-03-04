@@ -29,7 +29,7 @@ const updateJob = async (req, res) => {
     if (body.date !== job.data.date) {
       await job.remove();
       const delay = await calculateDelay(body.date);
-      await queue.add(data, { delay });
+      await queue.add(data, { delay, jobId: id });
 
       return res.status(200).json({ message: 'Job has been updated successfully' });
     }

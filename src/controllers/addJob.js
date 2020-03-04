@@ -13,8 +13,11 @@ const addJob = async (req, res) => {
     }
 
     const { body } = req;
+    const { id } = body;
+
+    delete body.id;
     const delay = await calculateDelay(body.date);
-    await queue.add(body, { delay });
+    await queue.add(body, { delay, jobId: id });
 
     return res.status(200).json({ message: 'Job has been added successfully' });
   } catch (error) {
