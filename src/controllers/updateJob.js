@@ -1,7 +1,8 @@
 const { validationResult } = require('express-validator');
 
-const queue = require('../queue');
-const { calculateDelay } = require('../helpers/calculateDelay');
+const bullWrapper = require('../bull/wrapper');
+const { BULL_METHODS } = require('../constants');
+const calculateDelay = require('../helpers/calculateDelay');
 
 const updateJob = async (req, res) => {
   try {
@@ -14,7 +15,9 @@ const updateJob = async (req, res) => {
 
     const { id } = req.params;
     const { body } = req;
-    const job = await queue.getJob(id);
+    const { queue } = req.query;
+
+    const job = await bullWrapper(queue, BULL_METHODS.GET_JOB, id);
 
     if (!job) {
       return res.status(404).json({ error: 'Job not found' });
@@ -29,7 +32,7 @@ const updateJob = async (req, res) => {
     if (body.date !== job.data.date) {
       await job.remove();
       const delay = await calculateDelay(body.date);
-      await queue.add(data, { delay });
+      await bullWrapper(queue, BULL_METHODS.ADD, data, { delay });
 
       return res.status(200).json({ message: 'Job has been updated successfully' });
     }

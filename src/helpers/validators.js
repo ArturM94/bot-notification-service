@@ -1,21 +1,27 @@
 const { body, param, query } = require('express-validator');
 
-const { JOB_TYPES } = require('../constants');
+const { JOB_TYPES, BULL_QUEUES } = require('../constants');
 
 const jobTypes = Object.values(JOB_TYPES);
+const bullQueues = Object.values(BULL_QUEUES);
 
 const idValidator = [
   param('id', 'id should not be empty')
     .not().isEmpty(),
   param('id', 'id should be a string')
+    .customSanitizer((id) => id.toString())
+    .isString(),
+];
+
+const notificationIdValidator = [
+  body('id', 'id should not be empty')
+    .not().isEmpty(),
+  body('id', 'id should be a string')
+    .customSanitizer((id) => id.toString())
     .isString(),
 ];
 
 const notificationValidator = [
-  body('id', 'id should not be empty')
-    .not().isEmpty(),
-  body('id', 'id should be a string')
-    .isString(),
   body('text', 'text should not be empty')
     .not().isEmpty(),
   body('text', 'text should be a string')
@@ -39,4 +45,19 @@ const jobTypeValidator = [
     .isIn(jobTypes),
 ];
 
-module.exports = { idValidator, notificationValidator, jobTypeValidator };
+const queueValidator = [
+  query('queue', 'queue should not be empty')
+    .not().isEmpty(),
+  query('queue', 'queue should be a string')
+    .isString(),
+  query('queue', `queue should contain only these values: ${bullQueues.join(', ')}`)
+    .isIn(bullQueues),
+];
+
+module.exports = {
+  idValidator,
+  notificationValidator,
+  notificationIdValidator,
+  jobTypeValidator,
+  queueValidator,
+};

@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
-const queue = require('../queue');
+const bullWrapper = require('../bull/wrapper');
+const { BULL_METHODS } = require('../constants');
 
 const deleteJob = async (req, res) => {
   try {
@@ -12,7 +13,9 @@ const deleteJob = async (req, res) => {
     }
 
     const { id } = req.params;
-    const job = await queue.getJob(id);
+    const { queue } = req.query;
+
+    const job = await bullWrapper(queue, BULL_METHODS.GET_JOB, id);
 
     if (!job) {
       return res.status(404).json({ error: 'Job not found' });
