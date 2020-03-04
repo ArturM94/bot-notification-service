@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
-const queue = require('../queue');
+const bullWrapper = require('../bull/wrapper');
+const { BULL_METHODS } = require('../constants');
 
 const getJobs = async (req, res) => {
   try {
@@ -11,8 +12,10 @@ const getJobs = async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
 
+    const { queue } = req.query;
     const { jobTypes } = req.query;
-    const jobs = await queue.getJobs([jobTypes]);
+
+    const jobs = await bullWrapper(queue, BULL_METHODS.GET_JOBS, [jobTypes]);
 
     if (!jobs.length) {
       return res.status(404).json({ error: 'Jobs not found' });

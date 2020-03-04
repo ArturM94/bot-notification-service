@@ -1,7 +1,8 @@
 const { validationResult } = require('express-validator');
 
 const calculateDelay = require('../helpers/calculateDelay');
-const queue = require('../queue');
+const bullWrapper = require('../bull/wrapper');
+const { BULL_METHODS } = require('../constants');
 
 const addJob = async (req, res) => {
   try {
@@ -13,8 +14,10 @@ const addJob = async (req, res) => {
     }
 
     const { body } = req;
+    const { queue } = req.query;
+
     const delay = await calculateDelay(body.date);
-    await queue.add(body, { delay });
+    await bullWrapper(queue, BULL_METHODS.ADD, body, { delay });
 
     return res.status(200).json({ message: 'Job has been added successfully' });
   } catch (error) {
