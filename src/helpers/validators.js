@@ -24,7 +24,7 @@ const notificationValidator = [
   body('text', 'text should be a string')
     .isString()
     .trim(),
-  body('attachments', 'attachments should be a string')
+  body('image', 'image should be a string')
     .isString()
     .trim(),
   body('sticker', 'sticker should be a string')

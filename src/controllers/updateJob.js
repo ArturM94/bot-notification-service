@@ -22,7 +22,7 @@ const updateJob = async (req, res) => {
 
     const data = {
       text: body.text || job.data.text,
-      attachments: body.attachments || job.data.attachments,
+      image: body.image || job.data.image,
       date: body.date || job.data.date,
     };
 

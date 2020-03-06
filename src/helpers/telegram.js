@@ -25,18 +25,18 @@ const sendMessage = async (chatId, text) => {
 };
 
 /**
- * Sends message with attachments to user by chat id via Telegram API.
+ * Sends message with image to user by chat id via Telegram API.
  *
  * @param {number} chatId - recipient chat id
  * @param {string} text - message to send
- * @param {string} attachments - attachments to sent
+ * @param {string} image - image to sent
  */
-const sendPhoto = async (chatId, text, attachments) => {
+const sendPhoto = async (chatId, text, image) => {
   try {
     const URL = `${TELEGRAM_API}/sendPhoto`;
     const params = {
       chat_id: chatId,
-      photo: attachments,
+      photo: image,
       caption: text,
     };
 

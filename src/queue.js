@@ -22,8 +22,8 @@ queue.process(async (job) => {
     const { data } = job;
     const subscribers = await getAllSubscribers();
 
-    if (data.attachments) {
-      subscribers.map((subscriber) => sendPhoto(subscriber.chatId, data.text, data.attachments));
+    if (data.image) {
+      subscribers.map((subscriber) => sendPhoto(subscriber.chatId, data.text, data.image));
     } else if (data.sticker) {
       subscribers.map((subscriber) => sendSticker(subscriber.chatId, subscriber.sticker));
     } else {
