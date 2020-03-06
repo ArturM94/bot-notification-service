@@ -29,6 +29,9 @@ const notificationValidator = [
   body('attachments', 'attachments should be a string')
     .isString()
     .trim(),
+  body('sticker', 'sticker should be a string')
+    .isString()
+    .trim(),
   body('date', 'date should not be empty')
     .not().isEmpty(),
   body('date', 'date should comply with the ISO 8601 standard')
