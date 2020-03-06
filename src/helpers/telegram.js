@@ -5,8 +5,8 @@ const { TELEGRAM_API } = require('../constants');
 /**
  * Sends message to user by chat id via Telegram API.
  *
- * @param {number} chatId - recipient chat id
- * @param {string} text - message to send
+ * @param {number} chatId Recipient chat id
+ * @param {string} text Message to send
  */
 const sendMessage = async (chatId, text) => {
   try {
@@ -27,9 +27,9 @@ const sendMessage = async (chatId, text) => {
 /**
  * Sends message with image to user by chat id via Telegram API.
  *
- * @param {number} chatId - recipient chat id
- * @param {string} text - message to send
- * @param {string} image - image to sent
+ * @param {number} chatId Recipient chat id
+ * @param {string} text Message to send
+ * @param {string} image Image to sent
  */
 const sendPhoto = async (chatId, text, image) => {
   try {
@@ -49,9 +49,10 @@ const sendPhoto = async (chatId, text, image) => {
 };
 
 /**
+ * Sends sticker to user by chat id via Telegram API.
  *
- * @param {number} chatId - recipient chat id
- * @param {string} sticker - sticker to send
+ * @param {number} chatId Recipient chat id
+ * @param {string} sticker Sticker to send
  */
 const sendSticker = async (chatId, sticker) => {
   try {
