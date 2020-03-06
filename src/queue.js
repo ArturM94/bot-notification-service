@@ -2,7 +2,7 @@ const Queue = require('bull');
 
 const config = require('./config');
 const { getAllSubscribers, updateNotificationStatus } = require('./db/requests');
-const { sendMessage, sendPhoto } = require('./helpers/telegram');
+const { sendMessage, sendPhoto, sendSticker } = require('./helpers/telegram');
 
 const { REDIS_URL } = config;
 const queue = new Queue('notifications', REDIS_URL);
@@ -24,6 +24,8 @@ queue.process(async (job) => {
 
     if (data.attachments) {
       subscribers.map((subscriber) => sendPhoto(subscriber.chatId, data.text, data.attachments));
+    } else if (data.sticker) {
+      subscribers.map((subscriber) => sendSticker(subscriber.chatId, subscriber.sticker));
     } else {
       subscribers.map((subscriber) => sendMessage(subscriber.chatId, data.text));
     }
