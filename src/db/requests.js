@@ -35,7 +35,7 @@ const updateNotificationStatus = async (id, status) => {
       },
     };
     const result = await notificationsCollection.update({ _id: id }, update);
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
