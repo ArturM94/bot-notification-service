@@ -13,15 +13,7 @@ const JOB_TYPES = {
   PAUSED: 'paused',
 };
 
-const REQUIRED_ENV = [
-  'REDIS_URL',
-  'NOTIFICATION_API_KEY',
-  'DB_URL',
-  'TELEGRAM_TOKEN',
-];
-
 module.exports = {
   TELEGRAM_API,
   JOB_TYPES,
-  REQUIRED_ENV,
 };

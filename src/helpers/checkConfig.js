@@ -1,4 +1,9 @@
-const { REQUIRED_ENV } = require('../constants');
+const REQUIRED_ENV = [
+  'REDIS_URL',
+  'NOTIFICATION_API_KEY',
+  'DB_URL',
+  'TELEGRAM_TOKEN',
+];
 
 const checkConfig = (config) => {
   REQUIRED_ENV.forEach((item) => {
