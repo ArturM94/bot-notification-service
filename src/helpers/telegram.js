@@ -48,4 +48,26 @@ const sendPhoto = async (chatId, text, attachments) => {
   }
 };
 
-module.exports = { sendMessage, sendPhoto };
+/**
+ *
+ * @param {number} chatId - recipient chat id
+ * @param {string} sticker - sticker to send
+ */
+const sendSticker = async (chatId, sticker) => {
+  try {
+    const URL = `${TELEGRAM_API}/sendSticker`;
+
+    const params = {
+      chat_id: chatId,
+      sticker,
+    };
+
+    const response = await axios.post(URL, {}, { params });
+
+    console.log(response.status, response.statusText);
+  } catch (error) {
+    console.error(error.response.data.description);
+  }
+};
+
+module.exports = { sendMessage, sendPhoto, sendSticker };
