@@ -15,12 +15,12 @@ const deleteJob = async (req, res) => {
     const job = await queue.getJob(id);
 
     if (!job) {
-      return res.status(404).json({ error: 'Job not found' });
+      return res.status(404).json({ error: `Job with id ${id} not found` });
     }
 
     await job.remove();
 
-    return res.status(200).json({ message: 'Job has been removed successfully' });
+    return res.status(200).json({ message: `Job with id ${id} has been removed successfully` });
   } catch (error) {
     console.error(error);
     return res.sendStatus(500);

@@ -15,7 +15,7 @@ const getJobs = async (req, res) => {
     const jobs = await queue.getJobs([jobTypes]);
 
     if (!jobs.length) {
-      return res.status(404).json({ error: 'Jobs not found' });
+      return res.status(404).json({ error: `Jobs with types ${jobTypes.join(', ')} not found` });
     }
 
     return res.status(200).json(jobs);

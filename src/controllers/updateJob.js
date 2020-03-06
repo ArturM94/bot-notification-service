@@ -17,7 +17,7 @@ const updateJob = async (req, res) => {
     const job = await queue.getJob(id);
 
     if (!job) {
-      return res.status(404).json({ error: 'Job not found' });
+      return res.status(404).json({ error: `Job with id ${id} not found` });
     }
 
     const data = {
@@ -31,12 +31,12 @@ const updateJob = async (req, res) => {
       const delay = await calculateDelay(body.date);
       await queue.add(data, { delay, jobId: id });
 
-      return res.status(200).json({ message: 'Job has been updated successfully' });
+      return res.status(200).json({ message: `Job with id ${id} has been updated successfully` });
     }
 
     await job.update(data);
 
-    return res.status(200).json({ message: 'Job has been updated successfully' });
+    return res.status(200).json({ message: `Job with id ${id} has been updated successfully` });
   } catch (error) {
     console.error(error);
     return res.sendStatus(500);
