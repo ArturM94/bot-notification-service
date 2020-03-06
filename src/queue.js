@@ -25,7 +25,7 @@ queue.process(async (job) => {
     if (data.image) {
       subscribers.map((subscriber) => sendPhoto(subscriber.chatId, data.text, data.image));
     } else if (data.sticker) {
-      subscribers.map((subscriber) => sendSticker(subscriber.chatId, subscriber.sticker));
+      subscribers.map((subscriber) => sendSticker(subscriber.chatId, data.sticker));
     } else {
       subscribers.map((subscriber) => sendMessage(subscriber.chatId, data.text));
     }
