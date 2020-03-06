@@ -34,7 +34,7 @@ const updateNotificationStatus = async (id, status) => {
         sent: status,
       },
     };
-    const result = await notificationsCollection.update({ _id: id }, update);
+    const result = await notificationsCollection.updateOne({ _id: id }, update);
 
     return result;
   } catch (error) {
