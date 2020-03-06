@@ -21,8 +21,6 @@ const notificationIdValidator = [
 ];
 
 const notificationValidator = [
-  body('text', 'text should not be empty')
-    .not().isEmpty(),
   body('text', 'text should be a string')
     .isString()
     .trim(),
