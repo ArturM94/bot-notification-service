@@ -22,11 +22,15 @@ queue.process(async (job) => {
     const { data } = job;
     const subscribers = await getAllSubscribers();
 
-    if (data.image) {
+    if (data.image && data.sticker) {
       subscribers.map((subscriber) => sendPhoto(subscriber.chatId, data.text, data.image));
-    } else if (data.sticker) {
       subscribers.map((subscriber) => sendSticker(subscriber.chatId, data.sticker));
-    } else {
+    } else if (data.image) {
+      subscribers.map((subscriber) => sendPhoto(subscriber.chatId, data.text, data.image));
+    } else if (data.text && data.sticker) {
+      subscribers.map((subscriber) => sendMessage(subscriber.chatId, data.text));
+      subscribers.map((subscriber) => sendSticker(subscriber.chatId, data.sticker));
+    } else if (data.text) {
       subscribers.map((subscriber) => sendMessage(subscriber.chatId, data.text));
     }
 
