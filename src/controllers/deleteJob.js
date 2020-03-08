@@ -8,7 +8,6 @@ const deleteJob = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      console.error(errors);
       return res.status(422).json({ errors: errors.array() });
     }
 
