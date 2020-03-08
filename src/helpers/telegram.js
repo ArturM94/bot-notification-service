@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const { TELEGRAM_API } = require('../constants');
+const logger = require('../helpers/logger');
 
 /**
  * Sends message to user by chat id via Telegram API.
@@ -18,9 +19,9 @@ const sendMessage = async (chatId, text) => {
 
     const response = await axios.post(URL, data);
 
-    console.log(response.status, response.statusText);
+    logger.info(`${response.status}: ${response.statusText}`);
   } catch (error) {
-    console.error(error.response.data.description);
+    logger.error(error.response.data.description);
   }
 };
 
@@ -42,9 +43,9 @@ const sendPhoto = async (chatId, text, image) => {
 
     const response = await axios.post(URL, {}, { params });
 
-    console.log(response.status, response.statusText);
+    logger.info(`${response.status}: ${response.statusText}`);
   } catch (error) {
-    console.error(error.response.data.description);
+    logger.error(error.response.data.description);
   }
 };
 
@@ -65,9 +66,9 @@ const sendSticker = async (chatId, sticker) => {
 
     const response = await axios.post(URL, {}, { params });
 
-    console.log(response.status, response.statusText);
+    logger.info(`${response.status}: ${response.statusText}`);
   } catch (error) {
-    console.error(error.response.data.description);
+    logger.error(error.response.data.description);
   }
 };
 

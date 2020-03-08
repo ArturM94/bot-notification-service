@@ -1,3 +1,5 @@
+const logger = require('../helpers/logger');
+
 const REQUIRED_ENV = [
   'REDIS_URL',
   'NOTIFICATION_API_KEY',
@@ -8,7 +10,7 @@ const REQUIRED_ENV = [
 const checkConfig = (config) => {
   REQUIRED_ENV.forEach((item) => {
     if (!config[item]) {
-      console.error(`The required environment variable "${item}" has not been defined!`);
+      logger.error(`The required environment variable "${item}" has not been defined!`);
       process.exit(1);
     }
   });

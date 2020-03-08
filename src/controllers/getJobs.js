@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const queue = require('../queue');
+const logger = require('../helpers/logger');
 
 const getJobs = async (req, res) => {
   try {
@@ -20,7 +21,7 @@ const getJobs = async (req, res) => {
 
     return res.status(200).json(jobs);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return res.sendStatus(500);
   }
 };

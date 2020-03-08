@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 
 const calculateDelay = require('../helpers/calculateDelay');
 const queue = require('../queue');
+const logger = require('../helpers/logger');
 
 const addJob = async (req, res) => {
   try {
@@ -21,7 +22,7 @@ const addJob = async (req, res) => {
 
     return res.status(200).json({ message: `Job with id ${id} has been added successfully` });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return res.sendStatus(500);
   }
 };

@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const queue = require('../queue');
+const logger = require('../helpers/logger');
 
 const deleteJob = async (req, res) => {
   try {
@@ -22,7 +23,7 @@ const deleteJob = async (req, res) => {
 
     return res.status(200).json({ message: `Job with id ${id} has been removed successfully` });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return res.sendStatus(500);
   }
 };
