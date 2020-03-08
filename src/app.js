@@ -3,6 +3,7 @@ const express = require('express');
 const config = require('./config');
 const jobsRouter = require('./routes/jobsRouter');
 const { authMiddleware, NotFoundError, ServerError } = require('./middlewares');
+const logger = require('./helpers/logger');
 
 const app = express();
 const { PORT } = config;
@@ -18,5 +19,5 @@ app.use(NotFoundError);
 app.use(ServerError);
 
 app.listen(PORT, () => {
-  console.log(`Notification service is running on ${PORT}`);
+  logger.info(`Notification service is running on ${PORT}`);
 });

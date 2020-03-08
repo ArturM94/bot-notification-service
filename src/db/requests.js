@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 const { getMongoClient } = require('../db/connection');
+const logger = require('../helpers/logger');
 
 const getAllSubscribers = async () => {
   const client = await getMongoClient();
@@ -17,7 +18,7 @@ const getAllSubscribers = async () => {
 
     return usersIds;
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   } finally {
     await client.close();
   }
@@ -38,7 +39,7 @@ const updateNotificationStatus = async (id, status) => {
 
     return result;
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   } finally {
     await client.close();
   }
